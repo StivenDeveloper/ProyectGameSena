@@ -1,0 +1,30 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background:url("assets/fondo.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-position: center; 
+    font-family: 'Acme', sans-serif;
+}
+#container-boton-inicio{
+    display: flex;
+    justify-content: center;
+    margin-top: 50vh;
+}
+
+#boton-inicio{
+    padding: 10px;
+    font-family: 'Signika Negative', sans-serif;
+}
+
+#creditos{
+    display: flex;
+    justify-content: center;
+    font-family:'Signika Negative', sans-serif;
+}

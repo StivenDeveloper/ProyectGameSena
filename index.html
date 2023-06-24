@@ -29,26 +29,33 @@
        
     </section>
   <!----------------------------SECCIÓN LUCHA-------------------------------------------------->
+    <div id="mensaje-resultado" class="contenedor-mensaje"></div>
     <section id="section-lucha">
-        <div id="mensaje-resultado" class="contenedor-mensaje"></div>
-        <figure id="lucha-jugador"></figure>
-        <figure id="lucha-enemigo"></figure>
-        
-    
-<!------------------------------CONTENEDOR ATAQUE------------------------------------------------>
-        <div id="contenedor-ataque">
-            <figure id="contenedor-ataques"></figure>
-        
-            <input type="image" src="assets/font/imgAtaque.png" id="boton-ataque" class="iconosAtaque"></input>   
+        <div id="contenedor-jugador-vida">
+            <div class="vida-bar">
+                <span id="vida-progreso-jugador"></span>
+            </div>
+            <figure id="lucha-jugador"></figure>
         </div>
-<!-----------------------------CONTENEDOR DEFENSA------------------------------------------------->
-        <div id="contenedor-defensa">
-            <figure id="contenedor-defensas"></figure>     
-            <input type="image"  src="assets/font/imgDefensa.png" id="boton-defensa" class="iconosAtaque"></input>
+        <div id="contenedor-enemigo-vida">
+            <div class="vida-bar">
+                <span id="vida-progreso-enemigo"></span>
+            </div>
+            <figure id="lucha-enemigo"></figure>
         </div>
-            <button id="siguente-round" class="boton"><span>Siguente Round</span></button>
-            <button id="reiniciar-juego" class="boton"><span>Reinicar juego</span></button>
+        
     </section>
+    <section id="section-ataques-Defensa">
+        <!------------------------------CONTENEDOR ATAQUE------------------------------------------------>
+                <div id="contenedor-ataque">
+                    <figure id="contenedor-ataques"></figure>   
+                </div>
+        <!-----------------------------CONTENEDOR DEFENSA------------------------------------------------->
+                <div id="contenedor-defensa">
+                    <figure id="contenedor-defensas"></figure>     
+                </div>
+    </section>
+
 </body>
 <script src="js/game.js"></script>
 </html>

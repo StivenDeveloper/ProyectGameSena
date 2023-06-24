@@ -9,24 +9,17 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment:fixed;
-    background-position: center; 
+    background-position: center;
     font-family: 'Acme', sans-serif;
 }
+
+/* ----------sección inicio----------- */
 #container-boton-inicio{
     display: flex;
     justify-content: left;
     margin-top: 50vh;
     margin-left: 20%;
-    
-}
 
-#boton-inicio{
-    padding: 10px;
-    font-family: 'Signika Negative', sans-serif;
-}
-
-#boton-personaje{
-    padding: 10px;
 }
 
 #creditos{
@@ -36,11 +29,23 @@ body{
     font-family:'Signika Negative', sans-serif;
 }
 
+
+#boton-inicio{
+    padding: 10px;
+    font-family: 'Signika Negative', sans-serif;
+}
+/* ----------sección personaje----------- */
+#boton-personaje{
+    padding: 10px;
+}
+
+
+
 #contenedor-tarjetas{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    
+
 }
 
 .tarjeta-de-personajes{
@@ -78,7 +83,7 @@ input{
 .tarjeta-de-personajes img:hover{
     cursor: pointer;
     transform: scale(1.15);
-    
+
 }
 
 #Ash{
@@ -88,39 +93,12 @@ input{
 
 #Brock{
     filter: drop-shadow(5px 5px 10px black);
-    
+
 
 }
 
-#Dawn{  
+#Dawn{
     filter: drop-shadow(5px 5px 10px black);
-}
-
-#lucha-jugador{
-    display:flex;
-    justify-content: start;
-    align-items: center;
-}
-
-#lucha-jugador img{
-    height: 300px;
-    width: 200px;
-}
-
-#lucha-enemigo{
-    display:flex;
-    justify-content: end;
-    
-}
-#lucha-enemigo img{
-    height: 300px;
-    width: 200px;
-    display: flex;
-}
-
-.iconosAtaque{
-    height: 190px;
-    width: 190px;
 }
 
 #logo{
@@ -133,31 +111,75 @@ input{
     animation-iteration-count: infinite;
 }
 
-
-#lucha-jugador img{
-   display: flex;
-   justify-content: start;
-   align-items: center; 
-   margin-left: 100px;
-}
-
-
-
-
-#lucha-enemigo img{
-    display: flex;
-   justify-content: end;
-   align-items: center; 
-   margin-top: -300px;
-   margin-right: 100px;
-   position: relative;
-}
-
 @keyframes animacionlogo {
     0%{justify-content:left;left: 0}
     50%{box-shadow: 5px 10px #888888;;left:80vw}
     100%{justify-content:center;left:0}
 }
+/* ----------sección-luchas----------- */
+
+#section-lucha{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#contenedor-jugador-vida{
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   margin: 50px;
+
+
+}
+
+#contenedor-enemigo-vida{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 50px;
+}
+#lucha-jugador img{
+    height: 300px;
+    width: 200px;
+}
+
+#lucha-enemigo img{
+    height: 300px;
+    width: 200px;
+}
+
+
+
+
+
+
+
+
+.vida-bar {
+    width: 200px;
+    height: 20px;
+    background-color: #ddd;
+  }
+
+  #vida-progreso-jugador{
+    display: block;
+    height: 100%;
+    background-color: #ff0000;
+    width: 100%; /* Cambia este valor con JavaScript para representar el progreso */
+  }
+
+
+  #vida-progreso-enemigo{
+    display: block;
+    height: 100%;
+    background-color: #ff0000;
+    width: 100%; /* Cambia este valor con JavaScript para representar el progreso */
+
+  }
+
+
+
+/* ----------Estilo botones----------- */
 
 
 .boton{
@@ -176,7 +198,7 @@ input{
    transition: .3s ease all;
    border-radius: 10px;
    position: relative;
-   overflow: hidden; 
+   overflow: hidden;
 }
 
 .boton span{
@@ -199,4 +221,4 @@ input{
 
 .boton:hover::after{
     top:0;
-} 
+}

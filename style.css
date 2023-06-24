@@ -5,7 +5,7 @@
 }
 
 body{
-    background:url("assets/fondo.jpg");
+    background:url("assets/font/inicio.gif");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment:fixed;
@@ -14,8 +14,10 @@ body{
 }
 #container-boton-inicio{
     display: flex;
-    justify-content: center;
+    justify-content: left;
     margin-top: 50vh;
+    margin-left: 20%;
+    
 }
 
 #boton-inicio{
@@ -23,8 +25,178 @@ body{
     font-family: 'Signika Negative', sans-serif;
 }
 
+#boton-personaje{
+    padding: 10px;
+}
+
 #creditos{
     display: flex;
-    justify-content: center;
+    justify-content: left;
+    margin-left: 15%;
     font-family:'Signika Negative', sans-serif;
 }
+
+#contenedor-tarjetas{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+
+.tarjeta-de-personajes{
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    width: 200px;
+    margin: 60px auto;
+}
+
+input{
+    display: none;
+}
+
+.name{
+    display: flex;
+    justify-content: center;
+}
+
+#boton-personaje{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-left: 45%;
+    margin-top: -100px;
+
+}
+
+.tarjeta-de-personajes img{
+    transition: all 300ms;
+    position: relative;
+    margin-top: -50px;
+}
+.tarjeta-de-personajes img:hover{
+    cursor: pointer;
+    transform: scale(1.15);
+    
+}
+
+#Ash{
+    filter: drop-shadow(5px 5px 10px black);
+    height: 400px;
+}
+
+#Brock{
+    filter: drop-shadow(5px 5px 10px black);
+    
+
+}
+
+#Dawn{  
+    filter: drop-shadow(5px 5px 10px black);
+}
+
+#lucha-jugador{
+    display:flex;
+    justify-content: start;
+    align-items: center;
+}
+
+#lucha-jugador img{
+    height: 300px;
+    width: 200px;
+}
+
+#lucha-enemigo{
+    display:flex;
+    justify-content: end;
+    
+}
+#lucha-enemigo img{
+    height: 300px;
+    width: 200px;
+    display: flex;
+}
+
+.iconosAtaque{
+    height: 190px;
+    width: 190px;
+}
+
+#logo{
+    width: 300px;
+    position: relative;
+    animation: animacionlogo;
+    animation-duration: 10s;
+    animation-delay: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+
+#lucha-jugador img{
+   display: flex;
+   justify-content: start;
+   align-items: center; 
+   margin-left: 100px;
+}
+
+
+
+
+#lucha-enemigo img{
+    display: flex;
+   justify-content: end;
+   align-items: center; 
+   margin-top: -300px;
+   margin-right: 100px;
+   position: relative;
+}
+
+@keyframes animacionlogo {
+    0%{justify-content:left;left: 0}
+    50%{box-shadow: 5px 10px #888888;;left:80vw}
+    100%{justify-content:center;left:0}
+}
+
+
+.boton{
+   display:flex;
+   align-items: center;
+   justify-content: center;
+   height: 50px;
+   background-color: #141414;
+   color: #fff;
+   font-family: 'Signika Negative', sans-serif;
+   font-size: 16px;
+   font-weight: 500;
+   border: none;
+   cursor: pointer;
+   text-transform: uppercase;
+   transition: .3s ease all;
+   border-radius: 10px;
+   position: relative;
+   overflow: hidden; 
+}
+
+.boton span{
+    position: relative;
+    z-index: 2;
+    transition: .3s ease all;
+}
+.boton::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: #c4b107;
+    position: absolute;
+    border-radius: 10px;
+    z-index: 1;
+    top: -80px;
+    left: 0;
+    transition: .3s ease-in-out all;
+}
+
+.boton:hover::after{
+    top:0;
+} 

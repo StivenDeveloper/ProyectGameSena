@@ -12,39 +12,42 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body id>
+ <!---------------------------------INCIO--------------------------------------------->
     <section id ="section-inicio">
-        <div id="container-boton-inicio">
-            <button id="boton-inicio">INICIO</button>
+        <div id="container-boton-inicio" class="contendedor-botones" >
+            <button id="boton-inicio" class="boton"><span>INICIO</span></button>
         </div>
         <h1 id="creditos">Autor: StivenDeveloper</h1>
     </section>
-
+  <!--------------------------------SELECCIONAR PERSONAJE---------------------------------------------->
     <section id ="section-personaje">
+        <div id="logo-inicio"></div>
         <figure id="contenedor-tarjetas" class="tarjetas">
             
         </figure>
-        <button id="boton-personaje">Seleccionar personaje</button>
+        <button id="boton-personaje" class="boton"><span>Seleccionar personaje</span></button>
+       
     </section>
-
+  <!----------------------------SECCIÓN LUCHA-------------------------------------------------->
     <section id="section-lucha">
-        <div id="mensaje-resultado" class="contenedor-mensaje">
-
-        </div>
+        <div id="mensaje-resultado" class="contenedor-mensaje"></div>
         <figure id="lucha-jugador"></figure>
         <figure id="lucha-enemigo"></figure>
-<!------------------------------------------------------------------------------>
+        
+    
+<!------------------------------CONTENEDOR ATAQUE------------------------------------------------>
         <div id="contenedor-ataque">
             <figure id="contenedor-ataques"></figure>
         
-            <input type="image" src="assets/mario_th.png" id="boton-ataque"></input>   
+            <input type="image" src="assets/font/imgAtaque.png" id="boton-ataque" class="iconosAtaque"></input>   
         </div>
-<!------------------------------------------------------------------------------>
+<!-----------------------------CONTENEDOR DEFENSA------------------------------------------------->
         <div id="contenedor-defensa">
             <figure id="contenedor-defensas"></figure>     
-            <input type="image"  src="assets/bowser_th.png" id="boton-defensa"></input>
+            <input type="image"  src="assets/font/imgDefensa.png" id="boton-defensa" class="iconosAtaque"></input>
         </div>
-        <button id="siguente-round">Siguente Round</button>
-        <button id="reiniciar-juego">Reinicar juego</button>
+            <button id="siguente-round" class="boton"><span>Siguente Round</span></button>
+            <button id="reiniciar-juego" class="boton"><span>Reinicar juego</span></button>
     </section>
 </body>
 <script src="js/game.js"></script>

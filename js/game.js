@@ -100,6 +100,7 @@ function inicioJuego(evento){
 function seleccionarPersonajeJugador(){
     sectionPersonaje.style.display= "none";
     sectionLucha.style.display="grid";
+    ModificarFondo('assets/font/lucha.gif');
     if(inputAsh.checked){
         personajesLuchaJugador.innerHTML = mostrarImagen(ash.foto,ash.nombre,"imgAsh");
         personajeJugador= ash.nombre;

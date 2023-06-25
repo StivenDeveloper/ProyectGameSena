@@ -104,6 +104,7 @@ input{
 #logo{
     width: 300px;
     position: relative;
+    border-radius: 10px;
     animation: animacionlogo;
     animation-duration: 10s;
     animation-delay: 1s;
@@ -113,7 +114,7 @@ input{
 
 @keyframes animacionlogo {
     0%{justify-content:left;left: 0}
-    50%{box-shadow: 5px 10px #888888;;left:80vw}
+    50%{box-shadow: 5px 5px #1b4cdd;;left:80vw}
     100%{justify-content:center;left:0}
 }
 /* ----------sección-luchas----------- */

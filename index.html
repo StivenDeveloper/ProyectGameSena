@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MokeMario</title>
-    <link rel="shortcut icon" href="assets/mario_th.png">
+    <title>Pokemon</title>
+    <link rel="shortcut icon" href="assets/font/pokeball.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap" rel="stylesheet">
@@ -25,11 +25,13 @@
         <figure id="contenedor-tarjetas" class="tarjetas">
             
         </figure>
-        <button id="boton-personaje" class="boton"><span>Seleccionar personaje</span></button>
+        <div id="contenedor-boton--seleccionar">
+            <button id="boton-personaje" class="boton"><span>Seleccionar personaje</span></button>
+        </div>
        
     </section>
   <!----------------------------SECCIÓN LUCHA-------------------------------------------------->
-    <div id="mensaje-resultado" class="contenedor-mensaje"></div>
+  <div id="mensaje-resultado"></div>
     <section id="section-lucha">
         <div id="contenedor-jugador-vida">
             <div class="vida-bar">
@@ -43,7 +45,7 @@
             </div>
             <figure id="lucha-enemigo"></figure>
         </div>
-        
+        <div id="logo-at-de" class="logo-at-de"></div>
     </section>
     <section id="section-ataques-Defensa">
         <!------------------------------CONTENEDOR ATAQUE------------------------------------------------>
@@ -54,6 +56,7 @@
                 <div id="contenedor-defensa">
                     <figure id="contenedor-defensas"></figure>     
                 </div>
+
     </section>
 
 </body>

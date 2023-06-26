@@ -11,13 +11,11 @@ const ataquesBotones = document.getElementById('contenedor-ataques');
 const defensaBotones = document.getElementById('contenedor-defensas');
 const condenedorAtaque= document.getElementById('contenedor-ataque');
 const condenedorDefensa= document.getElementById('contenedor-defensa');
-const botonAtaque = document.getElementById('boton-ataque');
-const botonDefensa= document.getElementById('boton-defensa');
-const botonSiguente = document.getElementById('siguente-round');
 const reinicar = document.getElementById('reiniciar-juego');
 const logoIncio = document.getElementById('logo-inicio');
 const barraVidaJugador = document.querySelector('#vida-progreso-jugador')
 const barraVidaEnemigo = document.querySelector('#vida-progreso-enemigo')
+const logoAtaDef= document.getElementById('logo-at-de')
 let num = 0;
 let personajes = [];
 let ataques = [];
@@ -34,39 +32,37 @@ let inputAgua1;
 let inputAgua2;
 let personajeJugador;
 let personajeEnemigo;
-let imgLucha;
 let vidasJugador=100;
 let vidasEnemigo=100;
 let ataqueJugador;
 let ataqueEnemigo;
 
 class Personaje{
-    constructor(nombre,foto,fotoLucha){
+    constructor(nombre,foto){
         this.nombre = nombre;
         this.foto = foto;
-        this.fotoLucha = fotoLucha;
     }
 }
 
-let ash = new Personaje("Ash", "assets/characters/ash1.png","assets/characters/ash2.png");
-let brock = new Personaje("Brock","assets/characters/Brock1.png","assets/characters/Brock2.png");
-let dawn = new Personaje("Dawn","assets/characters/dawn1.png","assets/characters/dawn2.png");
+let ash = new Personaje("Ash", "assets/characters/ash1.png");
+let brock = new Personaje("Brock","assets/characters/Brock1.png");
+let dawn = new Personaje("Dawn","assets/characters/dawn1.png");
 
-let jessie= new Personaje("Jessie","assets/characters/Jessie1.png","assets/characters/Jessie2.png");
-let james= new Personaje("James","assets/characters/James1.png","assets/characters/James1.png");
-let helio = new Personaje("Helio","assets/characters/helio1.png","assets/characters/helio2.png");
+let jessie= new Personaje("Jessie","assets/characters/Jessie1.png");
+let james= new Personaje("James","assets/characters/James1.png");
+let helio = new Personaje("Helio","assets/characters/helio2.png");
 
 personajes.push(ash,brock,dawn);
 ataques.push(
-    {id:"Pikachu", imagen:""},
-    {id:"Golem",  imagen:""},
-    {id:"Empeleon", imagen:""},
+    {id:"Pikachu", imgCarta:"assets/characters/cartaPikachu.png",imgPokemon:"assets/characters/pikachu.png",imgGif:"assets/characters/pikachu.gif"},
+    {id:"Golem",  imgCarta:"assets/characters/cartaGolem.png",imgPokemon:"assets/characters/golem.png",imgGif:"assets/characters/golem.gif"},
+    {id:"Empoleon", imgCarta:"assets/characters/cartaEmpoleon.png",imgPokemon:"assets/characters/empoleon.png",imgGif:"assets/characters/empoleon.gif"},
 );
 
 defensas.push(
-    {id:"Raichu", imagen: ""},
-    {id:"Aron", imagen:""},
-    {id:"Blastoise", imagen:""},
+    {id:"Jolteon", imgCarta:"assets/characters/cartaJolteon.png",imgPokemon:"assets/characters/jolteon.png",imgGif:"assets/characters/jolteon.gif"},
+    {id:"Lairon", imgCarta:"assets/characters/cartaLairon.png",imgPokemon:"assets/characters/lairon.png",imgGif:"assets/characters/lairon.gif"},
+    {id:"Blastoise", imgCarta:"assets/characters/cartaBlastoise.png",imgPokemon:"assets/characters/blastoise.png",imgGif:"assets/characters/blastoise.gif"},
 );
 
 botonPersonajeJugador.style.display="none";
@@ -89,8 +85,6 @@ function inicioJuego(evento){
         inputAsh = document.getElementById("Ash")
         inputBrock = document.getElementById("Brock")
         inputDawn = document.getElementById("Dawn")
-
-        
     })
 
     botonPersonajeJugador.addEventListener('click', seleccionarPersonajeJugador)
@@ -117,21 +111,19 @@ function seleccionarPersonajeJugador(){
     enemigoAleatorio();
     mostrarAtaquesDefensas(ataques,ataquesBotones);
     mostrarAtaquesDefensas(defensas,defensaBotones);
-   
     num = numAleatorio(1,2)
     botonesAtaqueAleatorio();
 }
 
 function botonesAtaqueAleatorio(){
-    console.log("Vida del jugador "+vidasJugador)
-    console.log("Vida del enemigo "+vidasEnemigo)
     if(vidasJugador>0 && vidasEnemigo>0){
         if(num==1){
             condenedorDefensa.style.display="none"
             condenedorAtaque.style.display="block";
+            logoAtaDef.innerHTML=mostrarImagen('assets/characters/logo-espada.png','logo-ataque','img-ataque')
             inputElectrico1 = document.getElementById('Pikachu');
             inputRoca1 = document.getElementById('Golem');
-            inputAgua1 = document.getElementById('Empeleon');
+            inputAgua1 = document.getElementById('Empoleon');
             num=2;
             inputElectrico1.addEventListener("click",luchaAtaque)
             inputRoca1.addEventListener("click",luchaAtaque)
@@ -139,8 +131,9 @@ function botonesAtaqueAleatorio(){
         }else{
             condenedorAtaque.style.display="none";
             condenedorDefensa.style.display="block";
-            inputElectrico2 = document.getElementById('Raichu');
-            inputRoca2 = document.getElementById('Aron');
+            logoAtaDef.innerHTML=mostrarImagen('assets/characters/logo-escudo.png','logo-defensa','img-defensa')
+            inputElectrico2 = document.getElementById('Jolteon');
+            inputRoca2 = document.getElementById('Lairon');
             inputAgua2 = document.getElementById('Blastoise');
             num=1;
             inputElectrico2.addEventListener("click",luchaDefensa)
@@ -148,104 +141,109 @@ function botonesAtaqueAleatorio(){
             inputAgua2.addEventListener("click",luchaDefensa) 
         }
     }else{
+        logoAtaDef.style.display="none";
         resultadoFinal();
     }
 }
 
 function luchaAtaque(){
-    ataqueJugador = (inputElectrico1.checked)? "Pikachu": (inputRoca1.checked)? "Golem":"Empeleon";
-    console.log(ataqueJugador)
-    ataqueEnemigo=ataqueEnemigoAleatorio("Raichu","Aron","Blastoise");
-    if(ataqueJugador=="Pikachu" && ataqueEnemigo=="Raichu"|| ataqueJugador=="Golem" && ataqueEnemigo=="Aron"|| ataqueJugador=="Empeleon"&& ataqueEnemigo=="Blastoise"){
+    ataqueJugador = (inputElectrico1.checked)? "Pikachu": (inputRoca1.checked)? "Golem":"Empoleon";
+    let numA = (ataqueJugador=="Pikachu")?0: (ataqueJugador=="Golem")?1:2;
+    ataqueEnemigo=ataqueEnemigoAleatorio("Jolteon","Lairon","Blastoise");
+    let numB = (ataqueEnemigo=="Jolteon")?0: (ataqueEnemigo=="Lairon")?1:2;
+    if(ataqueJugador=="Pikachu" && ataqueEnemigo=="Jolteon"|| ataqueJugador=="Golem" && ataqueEnemigo=="Lairon"|| ataqueJugador=="Empoleon"&& ataqueEnemigo=="Blastoise"){
         vidasEnemigo -=10;
-        mostrarMensajeAtaque(ataqueJugador,ataqueEnemigo,10)
+        mostrarMensajeAtaque(ataqueJugador,ataqueEnemigo,10,1,ataques,numA,defensas,numB)
         if(vidasEnemigo<0){
             vidasEnemigo =0;
         }
         barraVidaEnemigo.style.width= vidasEnemigo+"%";
         botonesAtaqueAleatorio()
-    }else if(ataqueJugador=="Pikachu" && ataqueEnemigo=="Aron"|| ataqueJugador=="Golem" && ataqueEnemigo=="Blastoise"|| ataqueJugador=="Empeleon"&& ataqueEnemigo=="Raichu"){
+    }else if(ataqueJugador=="Pikachu" && ataqueEnemigo=="Lairon"|| ataqueJugador=="Golem" && ataqueEnemigo=="Blastoise"|| ataqueJugador=="Empoleon"&& ataqueEnemigo=="Jolteon"){
         vidasEnemigo -=20;
-        mostrarMensajeAtaque(ataqueJugador,ataqueEnemigo,20)
+        mostrarMensajeAtaque(ataqueJugador,ataqueEnemigo,20,1,ataques,numA,defensas,numB)
         if(vidasEnemigo<0){
             vidasEnemigo =0;
         }
         barraVidaEnemigo.style.width= vidasEnemigo+"%";
         botonesAtaqueAleatorio()
     }else{
-        mostrarMensajeAtaque(ataqueJugador,ataqueEnemigo,0)
+        mostrarMensajeAtaque(ataqueJugador,ataqueEnemigo,0,1,ataques,numA,defensas,numB)
         botonesAtaqueAleatorio()
     }
 }
 
 function luchaDefensa(){
-    ataqueJugador= (inputElectrico2.checked)?"Raichu":(inputRoca2.checked)?"Aron":"Blastoise";
-    console.log(ataqueJugador)
-    ataqueEnemigo=ataqueEnemigoAleatorio("Pikachu","Golem","Empeleon");
-    if(ataqueJugador=="Raichu" && ataqueEnemigo=="Pikachu"|| ataqueJugador=="Aron" && ataqueEnemigo=="Golem"|| ataqueJugador=="Blastoise"&& ataqueEnemigo=="Empeleon"){
+    ataqueJugador= (inputElectrico2.checked)?"Jolteon":(inputRoca2.checked)?"Lairon":"Blastoise";
+    let numA = (ataqueJugador=="Jolteon")?0: (ataqueJugador=="Lairon")?1:2;
+    ataqueEnemigo=ataqueEnemigoAleatorio("Pikachu","Golem","Empoleon");
+    let numB = (ataqueEnemigo=="Pikachu")?0: (ataqueEnemigo=="Golem")?1:2;
+    if(ataqueJugador=="Jolteon" && ataqueEnemigo=="Pikachu"|| ataqueJugador=="Lairon" && ataqueEnemigo=="Golem"|| ataqueJugador=="Blastoise"&& ataqueEnemigo=="Empoleon"){
         vidasJugador -=10;
-        mostrarMensajeDefensa(ataqueJugador,ataqueEnemigo,10)
+        mostrarMensajeAtaque(ataqueJugador,ataqueEnemigo,10,2,defensas,numA,ataques,numB)
         if(vidasJugador<0){
             vidasJugador=0;
         }
         barraVidaJugador.style.width= vidasJugador+"%";
         botonesAtaqueAleatorio()
-    }else if(ataqueJugador=="Raichu" && ataqueEnemigo=="Empeleon"|| ataqueJugador=="Aron" && ataqueEnemigo=="Pikachu"|| ataqueJugador=="Blastoise"&& ataqueEnemigo=="Golem"){
+    }else if(ataqueJugador=="Jolteon" && ataqueEnemigo=="Empoleon"|| ataqueJugador=="Lairon" && ataqueEnemigo=="Pikachu"|| ataqueJugador=="Blastoise"&& ataqueEnemigo=="Golem"){
         vidasJugador -=20;
-        mostrarMensajeDefensa(ataqueJugador,ataqueEnemigo,20)
+        mostrarMensajeAtaque(ataqueJugador,ataqueEnemigo,20,2,defensas,numA,ataques,numB)
         if(vidasJugador<0){
             vidasJugador=0;
         }
         barraVidaJugador.style.width= vidasJugador+"%";
         botonesAtaqueAleatorio()
     }else{
-        mostrarMensajeDefensa(ataqueJugador,ataqueEnemigo,0)
+        mostrarMensajeAtaque(ataqueJugador,ataqueEnemigo,0,2,defensas,numA,ataques,numB)
         botonesAtaqueAleatorio()
     }
 }
 
 function resultadoFinal(){
     if(vidasJugador>vidasEnemigo){
-        mensajeFinal("GANASTE");
+        mensajeResultado.innerHTML= mostrarImagen('assets/font/logoVictoria.png','victoria','logo-victoria')
     }else{
-        mensajeFinal("PERDISTE");
+        mensajeResultado.innerHTML= mostrarImagen('assets/font/logoDerrota.png','derrota','logo-derrota')
     }
 }
 
-function mostrarMensajeAtaque(ataqueJugador,ataqueEnemigo,vida){
+function mostrarMensajeAtaque(ataqueJugador,ataqueEnemigo,vida,tipoAtaque,arryA,indiceA,arryB,indiceB){
+    let tipo = (tipoAtaque==1)? `${personajeJugador} ha atacado con el pokemon ${ataqueJugador}, ${personajeEnemigo} se ha defendido con 
+    el pokemon ${ataqueEnemigo}, le has quitado ${vida} de vida.`: `${personajeEnemigo} ha atacado con el pokemon ${ataqueEnemigo}, ${personajeJugador} se ha defendido con 
+    el pokemon ${ataqueJugador}, te han quitado ${vida} de vida.`
     let mensaje = `
-      <p>${personajeJugador} ha atacado con el pokepon ${ataqueJugador}, ${personajeEnemigo} se ha defendido con 
-      el pokemon ${ataqueEnemigo}, le has quitado ${vida} de vida.</p>
+    <input type="checkbox" id="btn-modal">
+    <div class="contenedor-mensaje">
+        <div class="contenido-mensaje">
+            <p>${tipo}</p>
+            <div class="model-pokemones">
+                <img width='100px' height='150px' src=${arryA[indiceA].imgGif}></img>
+                <img width='100px' height='150px' src=${arryB[indiceB].imgGif} ></img>
+            </div>
+            <div class="btn-cerrar">
+                <label for="btn-modal">x</label>
+            </div>
+        </div>
+    </div>
     `
     mensajeResultado.innerHTML = mensaje;
 }
 
-function mensajeFinal(msg){
-    let mensaje = `
-      <h1>${msg} </h1>
-    `
-    mensajeResultado.innerHTML = mensaje;
-}
-function mostrarMensajeDefensa(ataqueJugador,ataqueEnemigo,vida){
-    let mensaje = `
-      <p>${personajeEnemigo} ha atacado con el pokemon ${ataqueEnemigo}, ${personajeJugador} se ha defendido con 
-      el pokemon ${ataqueJugador}, te han quitado ${vida} de vida.</p>
-    `
-    mensajeResultado.innerHTML = mensaje;
-}
 function mostrarAtaquesDefensas(arry,botones){
     for(let i=0; i<arry.length;i++){
-        imgLucha = `
-        <input type="radio" name="personaje" id=${arry[i].id}>
+        let imgLucha = `
+        <input type="radio" name="ataques-Defensa" id=${arry[i].id}>
         <label id=${arry[i].id} class="img-ataques-defensa" for=${arry[i].id}>
-            <p>${arry[i].id}</p>
-            <img src=${arry[i].imagen} alt=${arry[i].id}>
+            <div class="carta">
+                <img src=${arry[i].imgCarta} alt=${arry[i].id} class="carta-pokemon">
+                <img src=${arry[i].imgPokemon} alt=${arry[i].id} class="pokemon">
+            </div>
         </label>
         `
         botones.innerHTML += imgLucha;
     }
 }
-
 
 function enemigoAleatorio(){
     let num = numAleatorio(1,3);
@@ -283,17 +281,6 @@ function ModificarFondo(direccion){
 function  ataqueEnemigoAleatorio(opcion1,opcion2,opcion3){
     let num = numAleatorio(1,3)
     return (num==1)? opcion1: (num==2)? opcion2: opcion3;
-}
-
-
-
-
-function reproducirAudioPersonaje(boton,direccion){
-    boton.addEventListener("click", ()=>{
-        let etiquetaAudio = document.createElement("audio");
-        etiquetaAudio.setAttribute("src",`${direccion}`)
-        etiquetaAudio.play();
-    })
 }
 
 function numAleatorio(min,max){
